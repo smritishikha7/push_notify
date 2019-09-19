@@ -26,14 +26,14 @@ messaging.requestPermission().then(function () {
   });
 
 if ("serviceWorker" in navigator) {
-  send().catch(err => console.log(err));
+  send();
 }
 
 function send() {
   navigator.serviceWorker.register('./firebase-messaging-sw.js')
     .then((registration) => {
       messaging.useServiceWorker(registration);
-    });
+    }).catch(err => console.log(err));
 
 }
 // Notification.requestPermission().then((permission) => {

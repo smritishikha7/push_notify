@@ -22,20 +22,22 @@ function send() {
   navigator.serviceWorker.register('./firebase-messaging-sw.js')
     .then((registration) => {
       messaging.useServiceWorker(registration);
+
+      messaging.requestPermission().then(function () {
+        //getToken(messaging);
+        console.log("have permisson");
+    
+        return messaging.getToken();
+      }).then(function (token) {
+        console.log(token);
+      })
+      .catch(function (err) {
+        console.log('Permission denied', err);
+      });
     }).catch(err => console.log(err));
 
 } 
-messaging.requestPermission().then(function () {
-    //getToken(messaging);
-    console.log("have permisson");
 
-    return messaging.getToken();
-  }).then(function (token) {
-    console.log(token);
-  })
-  .catch(function (err) {
-    console.log('Permission denied', err);
-  });
 
 
 // Notification.requestPermission().then((permission) => {

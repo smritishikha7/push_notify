@@ -22,7 +22,7 @@ var p = document.getElementById("foo");
 p.onclick = function() {
     // Ensure that the user can receive Safari Push Notifications.
     if ('safari' in window && 'pushNotification' in window.safari) {
-        var permissionData = window.safari.pushNotification.permission('web.com.example.domain');
+        var permissionData = window.safari.pushNotification.permission('web.smritishikha7.github.io');
         checkRemotePermission(permissionData);
     }
 };

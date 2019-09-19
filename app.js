@@ -13,6 +13,18 @@ var config = {
 firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
+
+if ("serviceWorker" in navigator) {
+  send();
+}
+
+function send() {
+  navigator.serviceWorker.register('./firebase-messaging-sw.js')
+    .then((registration) => {
+      messaging.useServiceWorker(registration);
+    }).catch(err => console.log(err));
+
+} 
 messaging.requestPermission().then(function () {
     //getToken(messaging);
     console.log("have permisson");
@@ -25,17 +37,7 @@ messaging.requestPermission().then(function () {
     console.log('Permission denied', err);
   });
 
-if ("serviceWorker" in navigator) {
-  send();
-}
 
-function send() {
-  navigator.serviceWorker.register('./firebase-messaging-sw.js')
-    .then((registration) => {
-      messaging.useServiceWorker(registration);
-    }).catch(err => console.log(err));
-
-}
 // Notification.requestPermission().then((permission) => {
 //     console.log(permission);
 

@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
 
-if ("serviceWorker" in navigator && ! 'safari' in window )  {
+if ("serviceWorker" in navigator && ! ('safari' in window) )  {
   send();
 }
 

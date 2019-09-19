@@ -30,7 +30,7 @@ if (permissionData.permission === 'default') {
   window.safari.pushNotification.requestPermission(
       'https://smritishikha7.github.io/push_notify', // The web service URL.
       'web.smritishikha7.github.io',     // The Website Push ID.
-      {}, // Data that you choose to send to your server to help you identify the user.
+      {name : "smriti"}, // Data that you choose to send to your server to help you identify the user.
       checkRemotePermission         // The callback function.
   );
 }

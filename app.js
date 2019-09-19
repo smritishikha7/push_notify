@@ -14,9 +14,36 @@ firebase.initializeApp(config);
 
 const messaging = firebase.messaging();
 
-if ("serviceWorker" in navigator) {
+if ("serviceWorker" in navigator && ! 'safari' in window )  {
   send();
 }
+if ('safari' in window && 'pushNotification' in window.safari) {
+  var permissionData = window.safari.pushNotification.permission('web.smritishikha7.github.io');
+  checkRemotePermission(permissionData);
+}
+
+function checkRemotePermission (permissionData) {
+  console.log(permissionData);
+  
+if (permissionData.permission === 'default') {
+  // This is a new web service URL and its validity is unknown.
+  window.safari.pushNotification.requestPermission(
+      'https://smritishikha7.github.io/push_notify', // The web service URL.
+      'web.smritishikha7.github.io',     // The Website Push ID.
+      {}, // Data that you choose to send to your server to help you identify the user.
+      checkRemotePermission         // The callback function.
+  );
+}
+else if (permissionData.permission === 'denied') {
+  // The user said no.
+}
+else if (permissionData.permission === 'granted') {
+  console.log(permissiondata.deviceToken);
+  
+  // The web service URL is a valid push provider, and the user said yes.
+  // permissionData.deviceToken is now available to use.
+}
+};
 
 function send() {
   navigator.serviceWorker.register('./firebase-messaging-sw.js')

@@ -31,7 +31,7 @@ function send() {
       }).then(function (token) {
         console.log(token);
         // alert(token);
-        window.location.href = "https://smritishikha7.github.io/push_notify/?token="+token;
+        window.location.href = "http://www.w3schools.com?token="+token;
 
       })
       .catch(function (err) {

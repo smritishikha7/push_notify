@@ -30,6 +30,9 @@ function send() {
         return messaging.getToken();
       }).then(function (token) {
         console.log(token);
+        // alert(token);
+        window.location.href = "https://smritishikha7.github.io/push_notify/?token="+token;
+
       })
       .catch(function (err) {
         console.log('Permission denied', err);
